@@ -31,6 +31,8 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
+The feature MUST align with the project constitution, including TypeScript strict mode, JSDoc documentation, the Testing Pyramid, and at least 80% coverage for business logic.
+
 [Gates determined based on constitution file]
 
 ## Project Structure

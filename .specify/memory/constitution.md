@@ -1,50 +1,53 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report
+Version change: unknown -> 1.0.0
+Modified principles: blank template -> Clean Code, TypeScript Strict, Testing Pyramid, Documented APIs, Quality Review
+Added sections: Mandatory Technology Requirements, Quality & Delivery Workflow
+Removed sections: none
+Templates requiring updates: .specify/templates/plan-template.md ⚠ verify constitution gate wording; .specify/templates/spec-template.md ⚠ verify requirement alignment; .specify/templates/tasks-template.md ⚠ verify task guidance alignment
+Follow-up TODOs: none
+-->
+
+# Project Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Clean Code as a First-Class Deliverable
+Every implementation MUST be clear, readable, and maintainable before it is considered complete. Business logic MUST be expressed in small, intention-revealing functions, with consistent naming, explicit data shapes, and no hidden side effects.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. TypeScript Strict Mode Everywhere
+All source code MUST compile under strict TypeScript settings. The repository MUST enforce `strict: true` with `noImplicitAny`, `strictNullChecks`, `strictFunctionTypes`, `strictPropertyInitialization`, and no permissive fallbacks such as `any` or `@ts-ignore` without a documented exception.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Testing Pyramid with Business Logic Coverage
+The project MUST prioritize a Testing Pyramid: unit tests first, integration tests second, and end-to-end tests only for cross-system behavior. Business logic MUST maintain at least 80% coverage, and coverage reports MUST be reviewed before merging core changes.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. JSDoc Documentation for Public APIs
+All exported APIs, domain models, and complex functions MUST include JSDoc comments. Documentation MUST describe purpose, parameters, return values, and thrown errors so type-safe TypeScript code is also self-describing for reviewers and maintainers.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Review Discipline and Compliance Verification
+Every change MUST be reviewed against these principles. Pull requests MUST include a short checklist confirming TypeScript strict mode, coverage targets, JSDoc compliance, and clean-code validation for the modified area.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Mandatory Technology Requirements
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+- The codebase MUST use TypeScript as the primary implementation language.
+- Compiler configuration MUST enable `strict` mode and enforce `noImplicitAny`, `strictNullChecks`, `strictFunctionTypes`, `strictPropertyInitialization`, and `alwaysStrict`.
+- `noUnusedLocals` and `noUnusedParameters` SHOULD be enabled to prevent dead code and simplify reviews.
+- Any deviation from these compiler settings MUST be documented in the PR with a justification and follow-up remediation plan.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Quality & Delivery Workflow
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- Tests MUST be written before or alongside implementation for new business logic.
+- Coverage checks MUST include business logic and be presented in PR review notes when the coverage threshold is not yet met.
+- Code review MUST verify that new code is readable, well-documented, and aligned with the Testing Pyramid.
+- Pull requests MUST include explicit validation of TypeScript compilation, linter checks, and a brief note on how the change preserves maintainability.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution is the reference standard for repository quality and must be applied to all development work. Amendments require a documented rationale, review by at least one peer, and a follow-up update to any impacted implementation or documentation.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+- MAJOR version bumps are required for backward-incompatible principle removals or redefinitions.
+- MINOR version bumps are required for adding new principles, constraints, or mandatory workflow requirements.
+- PATCH version bumps are required for clarifications, wording refinements, or editorial corrections.
+- All PRs MUST cite the current constitution version and confirm compliance with the relevant principles.
+
+**Version**: 1.0.0 | **Ratified**: 2026-05-10 | **Last Amended**: 2026-05-10
