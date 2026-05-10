@@ -9,6 +9,12 @@
 - Password reset via email
 - Session management (24-hour expiry)"
 
+## Clarifications
+
+### Session 2026-05-10
+
+- Q: Use JWTs plus minimal server-side session state to enforce one active token and invalidate old tokens → A: Option B (server-side session state with single active token).
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Register and access account (Priority: P1)
@@ -78,7 +84,7 @@ An authenticated user expects their session to remain valid for a fixed period a
 - **FR-007**: The system MUST prevent disclosure of whether an email is registered during password reset requests.
 - **FR-008**: The system MUST reject expired or invalid authentication tokens for protected operations.
 - **FR-009**: The system MUST store credentials securely and never expose raw passwords in user-facing responses.
-- **FR-010**: The system MUST issue only one active session token per login flow and invalidate it automatically after the 24-hour expiry.
+- **FR-010**: The system MUST issue only one active session token per login flow, maintain minimal server-side session state to track token validity, and invalidate tokens automatically after the 24-hour expiry.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -102,5 +108,5 @@ An authenticated user expects their session to remain valid for a fixed period a
 - Users have access to a valid email address and can receive password reset messages.
 - The project has or will integrate with an email delivery service for password reset messages.
 - Existing account management or user profile services are not required for the initial authentication system.
-- Session expiry is enforced by token lifetime and does not require server-side session storage beyond token validation metadata.
+- Session expiry is enforced by token lifetime and includes minimal server-side session state for active-token tracking.
 - Password reset tokens are single-use and are assumed to expire after a short period such as one hour.
