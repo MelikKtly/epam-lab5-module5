@@ -14,6 +14,7 @@
 ### Session 2026-05-10
 
 - Q: Use JWTs plus minimal server-side session state to enforce one active token and invalidate old tokens → A: Option B (server-side session state with single active token).
+- Q: Apply rate limiting to authentication flows to protect abuse-sensitive endpoints → A: Option B (rate limit login and password reset operations).
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -70,6 +71,7 @@ An authenticated user expects their session to remain valid for a fixed period a
 - How does the system handle repeated password reset requests for the same account?
 - How does the system behave when a JWT token is tampered with or reused after expiry?
 - How does the system behave if the password reset email service is temporarily unavailable?
+- How does the system behave when login or password reset endpoints exceed allowed request thresholds?
 
 ## Requirements *(mandatory)*
 
@@ -85,6 +87,7 @@ An authenticated user expects their session to remain valid for a fixed period a
 - **FR-008**: The system MUST reject expired or invalid authentication tokens for protected operations.
 - **FR-009**: The system MUST store credentials securely and never expose raw passwords in user-facing responses.
 - **FR-010**: The system MUST issue only one active session token per login flow, maintain minimal server-side session state to track token validity, and invalidate tokens automatically after the 24-hour expiry.
+- **FR-011**: The system MUST apply rate limiting to login and password reset request endpoints to reduce brute-force and abuse risk.
 
 ### Key Entities *(include if feature involves data)*
 
